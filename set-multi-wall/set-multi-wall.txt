@@ -1,0 +1,53 @@
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Example "wallpapers.cfg" Configuration
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+[category1]
+
+h/* v/*
+h/pic1.jpg v/pic2.jpg
+
+sub-category/h/pic1.jpg sub-category/v/pic2.jpg
+sub-category/h/* sub-category/v/*
+
+[category2]
+
+h/* v/*
+h/pic1.jpg v/pic2.jpg
+
+sub-category/h/pic1.jpg sub-category/v/pic2.jpg
+sub-category/h/* sub-category/v/*
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Basic Algorithm of Operation
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+1. Check "is-running" - if not set goto step 11
+
+2. Randomly select a main-category
+
+3. Randomly select a line in the main-category
+
+4. Split the line on the space seperator
+
+5. For each part of split:
+
+    a. If part is explicit (no * found), keep that part as-is, use as path
+    b. If part is random (* found), use main-category and part to select a
+       random image file from defined path; update for path
+
+6. Copy each path to /tmp as /tmp/new0.bg and /tmp/new1.bg (new output)
+
+7. Get last output for fade from (/tmp/last0.bg and /tmp/last1.bg)
+
+8. Fade from last output to new output
+
+9. Set last output from new output (move /tmp/new0.bg to /tmp/last0.bg, etc)
+
+10. Stop
+
+11. Display last output (/tmp/last0.bg and /tmp/last1.bg)
+
+12. Set "is-running"
+
+13. Stop
