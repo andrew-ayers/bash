@@ -212,7 +212,7 @@ while true; do
     if [ -z "$RUNNING" ]; then
         show_old_background        
 
-        # Exit is script is already running as another process
+        # Exit if script is already running (as another process)
         pid=`pidof -x set-multi-wall.sh`; if [ "$pid" != "$$" ]; then exit 1; fi        
     else
         show_new_background
