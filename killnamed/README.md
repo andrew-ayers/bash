@@ -3,8 +3,8 @@
 ### About ###
 
 This script will kill processes which have a particular string associated with 
-them; in this case, "indicator-cpufreq", which is actually kicked off by a python 
-interpretor, as so:
+them; in this case, "indicator-cpufreq", which is actually kicked off by the 
+python interpreter, as so:
 
 /usr/bin/python3 /usr/bin/indicator-cpufreq
 
@@ -13,7 +13,7 @@ to kill all python3 processes, we need to do something like this script.
 
 ### License ###
 
-Copyright (C) 2016 by Andrew L. Ayers
+Copyright (C) 2014-2016 by Andrew L. Ayers
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
