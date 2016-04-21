@@ -55,6 +55,32 @@ You may need to do something different, but it shouldn't be anything too difficu
 to set up. If you need some help, give me a shout (see below), I'll see what I 
 can do.
 
+### Operation and Arguments ###
+
+When the script is executed, it enters into an infinite loop, which controls how
+and when (WAIT) to change the background.
+
+In this loop, it first checks to see if it is already running. If it isn't, a
+check is then made to see if an argument of "-now" was passed on the command 
+line:
+
+$HOME/set-multi-wall.sh -now
+
+If that argument was passed, then a new set of background images are displayed, 
+otherwise the old set is displayed. 
+
+It then checks to see if the current process ID matches one existing process 
+with the same name (set-multi-wall.sh); if it doesn't, it exits immediately.
+
+This is done so that multiple set-multi-wall.sh processes don't "stack up", each
+sitting in their own infinite loops, changing the images out from under each other
+willy-nilly. Instead, it ensures only one process at a time will run, and if
+there are multiple copies running, it will only run to display the old selected
+images, or a new set (if "-now" is passed).
+
+Otherwise, if the loop is already running, then it displays a new set of images,
+and then sleeps (for WAIT seconds).
+
 ### TODO ###
 
 * Configurable number of monitors?

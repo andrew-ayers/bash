@@ -23,7 +23,7 @@
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 # Path to wallpapers
-WALLPAPERS="/path/to/your/wallpapers"
+WALLPAPERS="/home/andrew/Data/Entertainment/backgrounds"
 
 # Transition time (in seconds)
 WAIT=180
@@ -208,14 +208,20 @@ show_new_backgrounds() {
 # Set the current display (necessary when kicked off at login)
 DISPLAY=:0.0
 
+# Otherwise, continue as normal
 while true; do
     if [ -z "$RUNNING" ]; then
-        show_old_background        
+        # If -now parameter was passed, then show a new background
+        if [ "$1" == "-now" ]; then 
+            show_new_background
+        else
+            show_old_background                
+        fi
 
-        # Exit if script is already running (as another process)
-        pid=`pidof -x set-multi-wall.sh`; if [ "$pid" != "$$" ]; then exit 1; fi        
+        # If the script is already running as another process, exit
+        pid=`pidof -x set-multi-wall.sh`; if [ "$pid" != "$$" ]; then exit 0; fi
     else
-        show_new_background
+        show_new_background        
     fi
     
     RUNNING="yes"
